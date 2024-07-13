@@ -1,8 +1,20 @@
 import { View, Text, StyleSheet, TouchableOpacity, Pressable } from "react-native";
+import * as Clipboard from "expo-clipboard";
+
 
 
 export function ModalPassword({password, handLeClasse}) {
 
+
+
+    async function handleCopyPassword () {
+        await Clipboard.setStringAsync(password);
+        
+        alert("password save copy!")
+        
+
+        handLeClasse();
+    }
     return (
         <View style={style.container}>
 
@@ -10,7 +22,7 @@ export function ModalPassword({password, handLeClasse}) {
                 <Text style={style.title}>
                     Generate Password
                 </Text>
-                <Pressable style={style.ineerPassword}>
+                <Pressable style={style.ineerPassword} onLongPress={handleCopyPassword} onPress={handleCopyPassword}>
                     <Text style={style.text}>
                         {password}
                     </Text>
