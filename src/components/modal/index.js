@@ -1,17 +1,24 @@
 import { View, Text, StyleSheet, TouchableOpacity, Pressable } from "react-native";
 import * as Clipboard from "expo-clipboard";
 
-
-
-export function ModalPassword({password, handLeClasse}) {
+import  useStorage  from '../../hooks/useStorage'; 
 
 
 
-    async function handleCopyPassword () {
+export function ModalPassword({ password, handLeClasse }) {
+
+    const { saveItem } = useStorage();
+
+
+
+    async function handleCopyPassword() {
         await Clipboard.setStringAsync(password);
+
+        await saveItem("@pass", password)
         
         alert("password save copy!")
         
+       
 
         handLeClasse();
     }
@@ -35,7 +42,7 @@ export function ModalPassword({password, handLeClasse}) {
                             Go Back
                         </Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={[style.button, style.buttonSave]}>
+                    <TouchableOpacity style={[style.button, style.buttonSave] } onPress={handleCopyPassword}>
                         <Text style={style.textSaveButton}>
                             Save Password
                         </Text>
@@ -80,27 +87,27 @@ const style = StyleSheet.create({
         textAlign: "center",
         color: "#FFF",
     },
-    buttonArea:{
+    buttonArea: {
         flexDirection: "row",
-        width:"90%",
-        marginTop:8,
-        alignItems:"center",
-        justifyContent:"space-between",
+        width: "90%",
+        marginTop: 8,
+        alignItems: "center",
+        justifyContent: "space-between",
     },
-    button:{
-        flex:1,
-        alignItems:"center",
-        marginBottom:14,
-        marginTop:14,
-        padding:8,
+    button: {
+        flex: 1,
+        alignItems: "center",
+        marginBottom: 14,
+        marginTop: 14,
+        padding: 8,
     },
-    buttonSave:{
-        backgroundColor:"#392de9",
-        borderRadius:8,
+    buttonSave: {
+        backgroundColor: "#392de9",
+        borderRadius: 8,
     },
-    textSaveButton:{
-        color:"#fff",
-        fontWeight:"bold",
+    textSaveButton: {
+        color: "#fff",
+        fontWeight: "bold",
     },
-    
+
 })

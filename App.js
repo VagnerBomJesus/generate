@@ -1,17 +1,18 @@
- 
-import { View,   } from "react-native"
- 
+
+import { View, } from "react-native"
+import { Routes } from "./src/routes";
+import { NavigationContainer } from "@react-navigation/native";
+
 
 export default function App() {
+
+  return ( 
+
+      <NavigationContainer>
+        <Routes />
+      </NavigationContainer>
  
-  return (
-    <View style={styles.contaner}>
-      
- 
-  
-    </View>
   )
 }
 
 
- 
