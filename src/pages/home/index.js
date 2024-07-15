@@ -29,6 +29,8 @@ export  function Home() {
 
     setPasswordValue(password)
     setModalVisible(true)
+
+    console.log("Clicou-- ! " + password);
   }
 
   return (
